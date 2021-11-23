@@ -1,7 +1,7 @@
 package co.usa.ciclo3.ciclo3.web;
 
-import co.usa.ciclo3.ciclo3.model.Tool;
-import co.usa.ciclo3.ciclo3.service.ToolsService;
+import co.usa.ciclo3.ciclo3.model.Category;
+import co.usa.ciclo3.ciclo3.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,26 +10,26 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/tools")
+@RequestMapping("/api/category")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class ToolsController {
+public class CategoryController {
 
     @Autowired
-    private ToolsService toolsService;
+    private CategoryService categoryService;
 
     @GetMapping("/all")
-    public List<Tool> getTools(){
-        return toolsService.getAll();
+    public List<Category> getCategories(){
+        return categoryService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Tool> getTool(@PathVariable("id") int id){
-        return toolsService.getTools(id);
+    public Optional<Category> getCategory(@PathVariable("id") int id){
+        return categoryService.getCategory(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Tool save(@RequestBody Tool t){
-        return toolsService.save(t);
+    public Category save(@RequestBody Category c){
+        return categoryService.save(c);
     }
 }
