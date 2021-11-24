@@ -22,7 +22,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties("reservations")
+    @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
 
     private Integer score = null;
