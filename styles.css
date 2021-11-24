@@ -1,0 +1,50 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+input{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+section{
+    text-align: center;
+}
+button{
+    margin-top: 15px;
+
+}
+.inputs-section{
+    margin-top: 20px;
+
+}
+table,td {
+    margin: auto;
+	border: 1px solid black;
+    border-collapse: collapse;
+}
+td{
+    padding: 10px;
+}
+h1{
+    text-align: center;
+    font-size: 30px;
+}
+.tools-block, .client-block, .message-block{
+    padding: 20px;
+}
+
+.tools-block{
+    background-color: #309975;
+}
+
+.client-block{
+    background-color: #dad873;
+}
+.message-block{
+    background-color: #efeeb4;
+}
+
+textarea{
+    margin-top: 15px;
+    resize: none;
+}
