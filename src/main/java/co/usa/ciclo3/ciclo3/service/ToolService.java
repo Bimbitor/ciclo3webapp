@@ -1,35 +1,35 @@
 package co.usa.ciclo3.ciclo3.service;
 
 import co.usa.ciclo3.ciclo3.model.Tool;
-import co.usa.ciclo3.ciclo3.repository.ToolsRepository;
+import co.usa.ciclo3.ciclo3.repository.ToolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ToolsService {
+public class ToolService {
 
     @Autowired
-    private ToolsRepository toolsRepository;
+    private ToolRepository toolRepository;
 
 
     public List<Tool> getAll(){
-        return (java.util.List<Tool>) toolsRepository.getAll();
+        return (java.util.List<Tool>) toolRepository.getAll();
     }
 
     public Optional<Tool> getTools(int id){
 
-        return toolsRepository.getTools(id);
+        return toolRepository.getTool(id);
     }
 
     public Tool save(Tool t){
         if (t.getId()==null){
-            return toolsRepository.save(t);
+            return toolRepository.save(t);
         }else{
-            Optional<Tool> taux = toolsRepository.getTools(t.getId());
+            Optional<Tool> taux = toolRepository.getTool(t.getId());
             if (taux.isEmpty()){
-                return toolsRepository.save(t);
+                return toolRepository.save(t);
             }else{
                 return t;
             }

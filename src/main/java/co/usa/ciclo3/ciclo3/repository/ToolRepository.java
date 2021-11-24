@@ -1,28 +1,27 @@
 package co.usa.ciclo3.ciclo3.repository;
 
 import co.usa.ciclo3.ciclo3.model.Tool;
-import co.usa.ciclo3.ciclo3.repository.crud.ToolsCrudRepository;
+import co.usa.ciclo3.ciclo3.repository.crud.ToolCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ToolsRepository {
+public class ToolRepository {
 
     @Autowired
-    private ToolsCrudRepository toolsCrudRepository;
+    private ToolCrudRepository toolCrudRepository;
 
     public List<Tool> getAll(){
-        return (List<Tool>) toolsCrudRepository.findAll();
+        return (List<Tool>) toolCrudRepository.findAll();
     }
 
-    public Optional<Tool> getTools(int id){
-        return toolsCrudRepository.findById(id);
+    public Optional<Tool> getTool(int id){
+        return toolCrudRepository.findById(id);
     }
 
     public Tool save(Tool t){
-        return  toolsCrudRepository.save(t);
+        return  toolCrudRepository.save(t);
     }
 }

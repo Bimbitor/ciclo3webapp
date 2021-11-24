@@ -1,7 +1,7 @@
 package co.usa.ciclo3.ciclo3.web;
 
-import co.usa.ciclo3.ciclo3.model.Category;
-import co.usa.ciclo3.ciclo3.service.CategoryService;
+import co.usa.ciclo3.ciclo3.model.Client;
+import co.usa.ciclo3.ciclo3.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,26 +10,26 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Category")
+@RequestMapping("/api/Client")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class CategoryController {
+public class ClientController {
 
     @Autowired
-    private CategoryService categoryService;
+    private ClientService clientService;
 
     @GetMapping("/all")
-    public List<Category> getCategories(){
-        return categoryService.getAll();
+    public List<Client> getClients(){
+        return clientService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@PathVariable("id") int id){
-        return categoryService.getCategory(id);
+    public Optional<Client> getClient(@PathVariable("id") int id){
+        return clientService.getClients(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category save(@RequestBody Category c){
-        return categoryService.save(c);
+    public Client save(@RequestBody Client c){
+        return clientService.save(c);
     }
 }

@@ -1,7 +1,7 @@
 package co.usa.ciclo3.ciclo3.web;
 
-import co.usa.ciclo3.ciclo3.model.Category;
-import co.usa.ciclo3.ciclo3.service.CategoryService;
+import co.usa.ciclo3.ciclo3.model.Admin;
+import co.usa.ciclo3.ciclo3.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,26 +10,26 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Category")
+@RequestMapping("/api/Admin")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class CategoryController {
+public class AdminController {
 
     @Autowired
-    private CategoryService categoryService;
+    private AdminService adminService;
 
     @GetMapping("/all")
-    public List<Category> getCategories(){
-        return categoryService.getAll();
+    public List<Admin> getAdmins(){
+        return adminService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@PathVariable("id") int id){
-        return categoryService.getCategory(id);
+    public Optional<Admin> getAdmin(@PathVariable("id") int id){
+        return adminService.getAdmins(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category save(@RequestBody Category c){
-        return categoryService.save(c);
+    public Admin save(@RequestBody Admin a){
+        return adminService.save(a);
     }
 }
