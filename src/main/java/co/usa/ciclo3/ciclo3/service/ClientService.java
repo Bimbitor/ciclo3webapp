@@ -42,14 +42,11 @@ public class ClientService {
                 if (t.getName()!=null){
                     alt.get().setName(t.getName());
                 }
-                if (t.getEmail()!=null){
-                    alt.get().setEmail(t.getEmail());
-                }
                 if (t.getPassword()!=null){
                     alt.get().setPassword(t.getPassword());
                 }
-                if (t.getName()!=null) {
-                    alt.get().setName(t.getName());
+                if (t.getAge()!=null) {
+                    alt.get().setAge(t.getAge());
                 }
                 return clientRepository.save(alt.get());
             }

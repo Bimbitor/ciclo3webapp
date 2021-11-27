@@ -15,7 +15,7 @@ public class CategoryService {
 
 
     public List<Category> getAll(){
-        return (java.util.List<co.usa.ciclo3.ciclo3.model.Category>) categoryRepository.getAll();
+        return categoryRepository.getAll();
     }
 
     public Optional<Category> getCategory(int id){
