@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/tool.js"></script>
+        <script type="text/javascript" src="js/client.js"></script>
+        <script type="text/javascript" src="js/message.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>Demo</title>
+        <meta name="description" content=""/>
+        <base href="/"/>
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="container unauthenticated">
+            With GitHub: <a href="/oauth2/authorization/github">click here</a>
+        </div>
+        <div class="container authenticated" style="display:none">
+            Logged in as: <span id="user"></span>
+        </div>
+        <script type="text/javascript">
+            $.get("/user", function(data) {
+                $("#user").html(data.name);
+                $(".unauthenticated").hide()
+                $(".authenticated").show()
+            });
+        </script>
+        <section class="tools-block">
+            <section class="data-section">
+                <h1>TOOLS</h1>
+                <div id="resultadoTools"></div>
+                <button onclick="traerInformacionTools()">Consultar</button>
+            </section>
+            <section class="inputs-section">
+                <input type="text" id="nameTools" placeholder="name">
+                <input type="text" id="brandTools" placeholder="brand">
+                <input type="number" id="yearTools" placeholder="year"><br>
+                <textarea name="" id="descriptionTools" wrap="hard" placeholder="description" cols="30" rows="3"></textarea><br>
+                <button onclick="guardarInformacionTools()">Guardar</button><br>
+                <button id="actualizarTools" disabled onclick="actualizarInformacionTools()">Actualizar</button>
+            </section>
+        </section>
+        <section class="client-block">
+            <section class="data-section">
+                <h1>CLIENTS</h1>
+                <div id="resultadoClients"></div>
+                <button onclick="traerInformacionClients(0)">Consultar</button>
+            </section>
+            <section class="inputs-section">
+                <input type="text" id="nameClients" placeholder="name">
+                <input type="text" id="emailClients" placeholder="email">
+                <input type="number" id="ageClients" placeholder="age"><br>
+                <button onclick="guardarInformacionClients()" >Guardar</button><br>
+                <button id="actualizarClients" disabled onclick="actualizarInformacionClients()" >Actualizar</button><br>
+            </section>
+        </section>
+        <section class="message-block">
+            <section class="data-section">
+                <h1>MESSAGES</h1>
+                <div id="resultadoMessages"></div>
+                <button onclick="traerInformacionMessages()">Consultar</button>
+            </section>
+            <section class="inputs-section">
+                <textarea name="" id="messageText" placeholder="message" cols="30" rows="4"></textarea><br>
+                <button onclick="guardarInformacionMessages()">Guardar</button><br>
+                <button id="actualizarMessages" disabled onclick="actualizarInformacionMessages()">Actualizar</button>
+            </section>
+        </section>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</html>
