@@ -1,6 +1,7 @@
 package co.usa.ciclo3.ciclo3.repository;
 
 import co.usa.ciclo3.ciclo3.model.Reservation;
+import co.usa.ciclo3.ciclo3.model.Tool;
 import co.usa.ciclo3.ciclo3.repository.crud.ReservationCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,9 @@ public class ReservationRepository {
 
     public Reservation save(Reservation r){
         return  reservationCrudRepository.save(r);
+    }
+
+    public void delete(Reservation r){
+        reservationCrudRepository.delete(r);
     }
 }

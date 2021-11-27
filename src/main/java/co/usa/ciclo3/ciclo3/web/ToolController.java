@@ -24,12 +24,24 @@ public class ToolController {
 
     @GetMapping("/{id}")
     public Optional<Tool> getTool(@PathVariable("id") int id){
-        return toolService.getTools(id);
+        return toolService.getTool(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Tool save(@RequestBody Tool t){
         return toolService.save(t);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Tool update(@RequestBody Tool t){
+        return toolService.update(t);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return toolService.delete(id);
     }
 }

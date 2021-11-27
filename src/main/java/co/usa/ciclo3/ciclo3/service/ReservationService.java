@@ -1,6 +1,7 @@
 package co.usa.ciclo3.ciclo3.service;
 
 import co.usa.ciclo3.ciclo3.model.Reservation;
+import co.usa.ciclo3.ciclo3.model.Reservation;
 import co.usa.ciclo3.ciclo3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ReservationService {
         return (java.util.List<Reservation>) reservationRepository.getAll();
     }
 
-    public Optional<Reservation> getReservations(int id){
+    public Optional<Reservation> getReservation(int id){
 
         return reservationRepository.getReservation(id);
     }
@@ -33,5 +34,35 @@ public class ReservationService {
                 return r;
             }
         }
+    }
+
+    public Reservation update(Reservation r){
+        if (r.getIdReservation()!=null) {
+            Optional<Reservation>alt=reservationRepository.getReservation(r.getIdReservation());
+            if (!alt.isEmpty()){
+                if (r.getStartDate()!=null){
+                    alt.get().setStartDate(r.getStartDate());
+                }
+                if (r.getDevolutionDate()!=null){
+                    alt.get().setDevolutionDate(r.getDevolutionDate());
+                }
+                if (r.getStatus()!=null){
+                    alt.get().setStatus(r.getStatus());
+                }
+                if (r.getScore()!=null) {
+                    alt.get().setScore(r.getScore());
+                }
+                return reservationRepository.save(alt.get());
+            }
+        }
+        return r;
+    }
+
+    public boolean delete(int id){
+        Boolean alt = getReservation(id).map(reservation -> {
+            reservationRepository.delete(reservation);
+            return true;
+        }).orElse(false);
+        return alt;
     }
 }

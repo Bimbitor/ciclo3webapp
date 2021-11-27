@@ -1,6 +1,7 @@
 package co.usa.ciclo3.ciclo3.web;
 
 import co.usa.ciclo3.ciclo3.model.Admin;
+import co.usa.ciclo3.ciclo3.model.Tool;
 import co.usa.ciclo3.ciclo3.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,24 @@ public class AdminController {
 
     @GetMapping("/{id}")
     public Optional<Admin> getAdmin(@PathVariable("id") int id){
-        return adminService.getAdmins(id);
+        return adminService.getAdmin(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Admin save(@RequestBody Admin a){
         return adminService.save(a);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Admin update(@RequestBody Admin a){
+        return adminService.update(a);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int id){
+        return adminService.delete(id);
     }
 }

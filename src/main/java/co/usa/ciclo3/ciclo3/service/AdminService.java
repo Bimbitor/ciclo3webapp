@@ -1,6 +1,7 @@
 package co.usa.ciclo3.ciclo3.service;
 
 import co.usa.ciclo3.ciclo3.model.Admin;
+import co.usa.ciclo3.ciclo3.model.Tool;
 import co.usa.ciclo3.ciclo3.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class AdminService {
         return (java.util.List<Admin>) adminRepository.getAll();
     }
 
-    public Optional<Admin> getAdmins(int id){
+    public Optional<Admin> getAdmin(int id){
 
         return adminRepository.getAdmin(id);
     }
@@ -33,5 +34,32 @@ public class AdminService {
                 return a;
             }
         }
+    }
+
+    public Admin update(Admin a){
+        if (a.getIdAdmin()!=null) {
+            Optional<Admin>alt=adminRepository.getAdmin(a.getIdAdmin());
+            if (!alt.isEmpty()){
+                if (a.getName()!=null){
+                    alt.get().setName(a.getName());
+                }
+                if (a.getEmail()!=null){
+                    alt.get().setEmail(a.getEmail());
+                }
+                if (a.getPassword()!=null){
+                    alt.get().setPassword(a.getPassword());
+                }
+                return adminRepository.save(alt.get());
+            }
+        }
+        return a;
+    }
+
+    public boolean delete(int id){
+        Boolean alt = getAdmin(id).map(admin -> {
+            adminRepository.delete(admin);
+            return true;
+        }).orElse(false);
+        return alt;
     }
 }

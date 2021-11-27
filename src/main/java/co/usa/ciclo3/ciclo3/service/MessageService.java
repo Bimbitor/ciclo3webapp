@@ -1,6 +1,7 @@
 package co.usa.ciclo3.ciclo3.service;
 
 import co.usa.ciclo3.ciclo3.model.Message;
+import co.usa.ciclo3.ciclo3.model.Message;
 import co.usa.ciclo3.ciclo3.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class MessageService {
         return (java.util.List<Message>) messageRepository.getAll();
     }
 
-    public Optional<Message> getMessages(int id){
+    public Optional<Message> getMessage(int id){
 
         return messageRepository.getMessage(id);
     }
@@ -33,5 +34,26 @@ public class MessageService {
                 return m;
             }
         }
+    }
+
+    public Message update(Message m){
+        if (m.getIdMessage()!=null) {
+            Optional<Message>alt=messageRepository.getMessage(m.getIdMessage());
+            if (!alt.isEmpty()){
+                if (m.getMessageText()!=null){
+                    alt.get().setMessageText(m.getMessageText());
+                }
+                return messageRepository.save(alt.get());
+            }
+        }
+        return m;
+    }
+
+    public boolean delete(int id){
+        Boolean alt = getMessage(id).map(message -> {
+            messageRepository.delete(message);
+            return true;
+        }).orElse(false);
+        return alt;
     }
 }

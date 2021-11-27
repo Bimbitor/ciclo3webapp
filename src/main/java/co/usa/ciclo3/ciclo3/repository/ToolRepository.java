@@ -24,4 +24,8 @@ public class ToolRepository {
     public Tool save(Tool t){
         return  toolCrudRepository.save(t);
     }
+
+    public void delete(Tool t){
+        toolCrudRepository.delete(t);
+    }
 }

@@ -26,13 +26,16 @@ public class Reservation {
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
 
-    private Integer score = null;
+    @ManyToOne
+    @JoinColumn(name = "scoreId")
+    @JsonIgnoreProperties("reservations")
+    private Score score;
 
-    public Integer getScore() {
+    public Score getScore() {
         return score;
     }
 
-    public void setScore(Integer score) {
+    public void setScore(Score score) {
         this.score = score;
     }
 

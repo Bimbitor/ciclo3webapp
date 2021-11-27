@@ -17,7 +17,7 @@ public class ClientService {
         return (java.util.List<Client>) clientRepository.getAll();
     }
 
-    public Optional<Client> getClients(int id){
+    public Optional<Client> getClient(int id){
 
         return clientRepository.getClient(id);
     }
@@ -33,5 +33,35 @@ public class ClientService {
                 return c;
             }
         }
+    }
+
+    public Client update(Client t){
+        if (t.getIdClient()!=null) {
+            Optional<Client>alt=clientRepository.getClient(t.getIdClient());
+            if (!alt.isEmpty()){
+                if (t.getName()!=null){
+                    alt.get().setName(t.getName());
+                }
+                if (t.getEmail()!=null){
+                    alt.get().setEmail(t.getEmail());
+                }
+                if (t.getPassword()!=null){
+                    alt.get().setPassword(t.getPassword());
+                }
+                if (t.getName()!=null) {
+                    alt.get().setName(t.getName());
+                }
+                return clientRepository.save(alt.get());
+            }
+        }
+        return t;
+    }
+
+    public boolean delete(int id){
+        Boolean alt = getClient(id).map(client -> {
+            clientRepository.delete(client);
+            return true;
+        }).orElse(false);
+        return alt;
     }
 }
