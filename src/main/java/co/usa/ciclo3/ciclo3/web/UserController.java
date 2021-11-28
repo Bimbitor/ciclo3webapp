@@ -1,17 +1,15 @@
 package co.usa.ciclo3.ciclo3.web;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
 
-@SpringBootApplication
 @RestController
+@RequestMapping("")
+@CrossOrigin(origins = "*", methods = RequestMethod.GET)
 public class UserController {
 
     @GetMapping("/user")
