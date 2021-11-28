@@ -8,8 +8,6 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestController
-@RequestMapping("")
-@CrossOrigin(origins = "*", methods = RequestMethod.GET)
 public class UserController {
 
     @GetMapping("/user")
